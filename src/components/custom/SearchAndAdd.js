@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View, FlatList } from 'react-native';
-import { Text, Button, TextInput } from '../ui';  // ✅ UI components use
+import { View, Text, TextInput, Button, FlatList } from 'react-native';
 import { styles } from '../../styles/styles';
 import { initialAzkaar } from '../../data/azkaar';
 
@@ -9,57 +8,55 @@ export default function SearchAndAdd() {
   const [search, setSearch] = useState('');
   const [newPhrase, setNewPhrase] = useState('');
 
-  // Filtered items for search (case-insensitive)
+  // Filtered list
   const filteredItems = items.filter(item =>
     item.phrase.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Add new phrase if unique
+  // Add new phrase
   const addPhrase = () => {
-    const exists = items.some(
-      item => item.phrase.toLowerCase() === newPhrase.toLowerCase()
-    );
-    if (!newPhrase.trim() || exists) return;
+    if (!newPhrase.trim()) return; // skip empty
+    const exists = items.some(it => it.phrase.toLowerCase() === newPhrase.toLowerCase());
+    if (exists) return; // skip duplicate
 
     const newItem = {
       id: Date.now().toString(),
       phrase: newPhrase,
       count: 0,
     };
-
     setItems([...items, newItem]);
     setNewPhrase('');
   };
 
   return (
-    <View style={styles.section}>
-      <Text style={styles.sectionTitle}>Search & Add Azkaar</Text>
+    <View style={{ padding: 10 }}>
+      <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Search & Add Azkaar</Text>
 
       {/* Search Box */}
       <TextInput
         placeholder="Search..."
         value={search}
         onChangeText={setSearch}
-        style={styles.input}
+        style={{ borderWidth: 1, padding: 5, marginVertical: 5 }}
       />
 
-      {/* Add New Phrase */}
-      <View style={styles.row}>
+      {/* Add Box */}
+      <View style={{ flexDirection: 'row', marginBottom: 10 }}>
         <TextInput
           placeholder="Add new phrase..."
           value={newPhrase}
           onChangeText={setNewPhrase}
-          style={[styles.input, { flex: 1 }]}
+          style={{ borderWidth: 1, padding: 5, flex: 1 }}
         />
         <Button title="Add" onPress={addPhrase} />
       </View>
 
-      {/* Show filtered list */}
+      {/* List */}
       <FlatList
         data={filteredItems}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <Text style={styles.itemName}>
+          <Text style={{ fontSize: 16, paddingVertical: 2 }}>
             {item.phrase} ({item.count})
           </Text>
         )}
