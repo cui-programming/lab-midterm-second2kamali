@@ -6,4 +6,5 @@ export const initialAzkaar = [
   { id: '3', phrase: 'Allāhu Akbar', count: 0 },
   { id: '4', phrase: 'Lā ilāha illā Allāh', count: 0 },
   { id: '5', phrase: 'Astaghfirullāh', count: 0 },
+
 ];
