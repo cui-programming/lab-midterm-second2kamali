@@ -9,14 +9,14 @@ export default function TasbihList() {
   // state — data hold kar raha hai
   const [items, setItems] = useState(initialAzkaar);
 
-  // ✅ Increase function (simple)
+  //  Increase function (simple)
   const increment = (index) => {
     const newItems = [...items];      // copy of old array
     newItems[index].count += 1;       // +1 kar do
     setItems(newItems);               // update the data
   };
 
-  // ✅ Decrease function (simple)
+  //  Decrease function (simple)
   const decrement = (index) => {
     const newItems = [...items];      // copy of old array
     if (newItems[index].count > 0) {  // count 0 se kam na ho
