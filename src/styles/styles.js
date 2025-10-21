@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 15,
     borderRadius: 10,
-    elevation: 2, // shadow for Android
+    // elevation: 2, // shadow for Android
   },
   sectionTitle: {
     fontSize: 18,
