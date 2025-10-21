@@ -10,10 +10,11 @@ import { STUDENT_NAME, REG_NO } from './src/config/student';
 export default function App() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <AboutMe name={STUDENT_NAME} regNo={REG_NO} />
+      
       {/* TODO: after creating the custom/TeacherMessage component, render it here */}
       <TeacherMessage />
       <TasbihList />
+      <AboutMe name={STUDENT_NAME} regNo={REG_NO} />
       <SearchAndAdd />
     </ScrollView>
   );
